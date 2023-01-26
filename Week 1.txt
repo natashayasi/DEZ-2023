@@ -1,0 +1,33 @@
+SELECT COUNT(1) FROM green_taxi_trips
+WHERE lpep_pickup_datetime >= '2019-01-15 00:00:00' 
+AND lpep_pickup_datetime <= '2019-01-15 23:59:59'
+
+SELECT 
+MAX(trip_distance) AS trip_distance
+,DATE(lpep_pickup_datetime)
+FROM green_taxi_trips
+WHERE DATE(lpep_pickup_datetime) IN ('2019-01-18','2019-01-28','2019-01-15','2019-01-10')
+AND DATE(lpep_pickup_datetime)= DATE(lpep_dropoff_datetime)
+GROUP BY DATE(lpep_pickup_datetime),DATE(lpep_dropoff_datetime)
+
+SELECT 
+passenger_count,
+COUNT(passenger_count) 
+FROM green_taxi_trips
+WHERE lpep_pickup_datetime >= '2019-01-01 00:00:00' 
+AND lpep_pickup_datetime <= '2019-01-01 23:59:59'
+GROUP BY passenger_count
+
+SELECT
+MAX(t."tip_amount") AS "Tip_Amount"
+--,t."DOLocationID" AS "Dropoff_LocationID"
+--,pz."Zone" AS "Pickup_Zone"
+,dz."Zone" AS "Dropoff_Zone"
+FROM green_taxi_trips t
+LEFT JOIN taxi_zone_lookup pz
+	ON t."PULocationID" = pz."LocationID"
+LEFT JOIN taxi_zone_lookup dz
+	ON t."DOLocationID" = dz."LocationID"
+WHERE pz."Zone" = 'Astoria'
+AND dz."Zone" IN ('Central Park','Jamaica','South Ozone Park','Long Island City/Queens Plaza')
+GROUP BY dz."Zone"
