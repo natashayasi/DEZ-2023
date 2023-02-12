@@ -1,0 +1,33 @@
+1. 43244696, 
+SELECT COUNT(1) FROM `vast-signifier-375221.dezoomcamp.fhv_tripdata` 
+2. 0 MB for the External Table and 317.94MB for the BQ Table
+SELECT COUNT(affiliated_base_number) FROM `vast-signifier-375221.dezoomcamp.fhv_tripdata` GROUP BY affiliated_base_number
+SELECT COUNT(affiliated_base_number) FROM `vast-signifier-375221.dezoomcamp.fhv_nonpartitioned_tripdata` GROUP BY affiliated_base_number
+3. 717748
+SELECT COUNT(1) FROM `vast-signifier-375221.dezoomcamp.fhv_tripdata` WHERE PUlocationID IS NULL AND DOlocationID IS NULL
+4. Partition by pickup_datetime Cluster on affiliated_base_number
+5. 647.87 MB for non-partitioned table and 23.06 MB for the partitioned table
+CREATE OR REPLACE TABLE `vast-signifier-375221.dezoomcamp.fhv_partitioned_tripdata`
+PARTITION BY DATE(pickup_datetime)
+CLUSTER BY affiliated_base_number AS (
+  SELECT * FROM `vast-signifier-375221.dezoomcamp.fhv_tripdata`
+);
+
+SELECT
+  COUNT(affiliated_base_number) 
+FROM vast-signifier-375221.dezoomcamp.fhv_nonpartitioned_tripdata
+WHERE pickup_datetime between '2019-03-01' and '2019-03-31'
+GROUP BY affiliated_base_number
+
+SELECT
+  COUNT(affiliated_base_number) 
+FROM vast-signifier-375221.dezoomcamp.fhv_partitioned_tripdata
+WHERE pickup_datetime between '2019-03-01' and '2019-03-31'
+GROUP BY affiliated_base_number
+
+6. GCP Bucket
+
+7. False
+
+
+
