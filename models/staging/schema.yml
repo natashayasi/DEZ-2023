@@ -9,7 +9,7 @@ sources:
     - name: fhv_tripdata
 
 models:
-  - name: fhv_tripdata
+  - name: stg_fhv_tripdata
     description: >
       Trips from fhv.
     columns:
@@ -28,10 +28,9 @@ models:
       - name: affiliated_base_number
         description: the number of the affiliated base.
       - name: trip_id
-        description: the id of the trip.
         tests:
           - unique:
               severity: warn
           - not_null:
               severity: warn
-                  
+        description: the id of the trip.
