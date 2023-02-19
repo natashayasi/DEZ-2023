@@ -11,9 +11,9 @@ select
     ,{{ get_ride_duration(pickup_datetime,dropOff_datetime) }} as ride_duration
     ,{{ dbt_utils.surrogate_key(['dispatching_base_num','pickup_datetime','PUlocationID']) }} as trip_id
 from {{ source('staging', 'fhv_tripdata') }}
-
+WHERE pickup_datetime BETWEEN '2019-01-01' AND '2020-12-31'
 -- dbt build --m <model.sql> --var 'is_test_run: false'
-{% if var('is_test_run', default=true) %}
+{% if var('is_test_run', default=false) %}
 
     limit 100
 
