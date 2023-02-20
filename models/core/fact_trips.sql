@@ -8,5 +8,4 @@ select
     ,dropoff_locationid
     ,sr_flag
     ,affiliated_base_number
-    ,trip_id
 from {{ ref("stg_fhv_tripdata") }}
