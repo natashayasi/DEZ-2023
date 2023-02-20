@@ -27,10 +27,3 @@ models:
         description: a flag.
       - name: affiliated_base_number
         description: the number of the affiliated base.
-      - name: trip_id
-        tests:
-          - unique:
-              severity: warn
-          - not_null:
-              severity: warn
-        description: the id of the trip.
