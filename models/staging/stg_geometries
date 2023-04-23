@@ -1,4 +1,4 @@
 {{ config{materialized='view'} }}
 
-select * from {{ source{'staging', 'geometries'}}
+select * from {{ source('staging', 'geometries') }}
 limit 100
