@@ -1,0 +1,10 @@
+version: 2
+
+sources: 
+  - name: staging
+    database: vast-signifier-375221
+    schema: project
+
+    tables:
+      - name: geometries
+      - name: simulations
