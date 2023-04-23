@@ -1,0 +1,21 @@
+1. TRUE, TRUE, TRUE, TRUE
+https://kafka.apache.org/intro - Stored in mulitple brokers
+https://www.infoworld.com/article/3660073/why-apache-kafka-is-dropping-zookeeper-for-kraft.html
+https://medium.com/@sunny_81705/kafka-log-retention-and-cleanup-policies-c8d9cb7e09f8
+https://www.confluent.io/blog/configuring-apache-kafka-consumer-group-ids/
+2. Topic Replication, ACK All
+Topic Replication protects against nodes failing. https://www.cloudkarafka.com/blog/apache-kafka-replication-factor-perfect-number.html
+ACK All ensures that no messages are lost, but can slow the trasfer of data as every message must be accounted for. https://betterprogramming.pub/kafka-acks-explained-c0515b3b707e
+3. Topic Partitioning, Consumer Group ID
+Topic partioning allows you to get around a single broker's IO throughput. https://medium.com/event-driven-utopia/understanding-kafka-topic-partitions-ae40f80552e8
+Consumer Group ID allows multiple consumers to recieve messages. https://www.tutorialspoint.com/apache_kafka/apache_kafka_consumer_group_example.htm
+4. vendor_id, tpep_pickup_datetime, tpep_dropoff_datetime
+"A unique device ID or a user ID will make a good partition key." https://medium.com/event-driven-utopia/understanding-kafka-topic-partitions-ae40f80552e8
+5. Deserializer Configuration, Topics Subscription, Group-Id, consumer Offset, consumer
+Deserializer Configuration, consumer
+Topics Subscription, consumer
+Bootstrap Server, producer
+Group-Id, consumer
+Offset, consumer
+Cluster Key and Cluster-Secret, producer
+https://docs.confluent.io/platform/current/installation/configuration/index.html
